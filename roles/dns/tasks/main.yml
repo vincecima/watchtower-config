@@ -1,0 +1,26 @@
+---
+- name: Install bind & related packages
+  apt:
+    name: "{{item}}"
+    state: present
+  become: true
+  with_items:
+    - bind9
+    - bind9utils
+
+- name: Install DNS config
+  copy:
+    src: "{{item}}"
+    dest: /etc/bind/
+  become: true
+  with_items:
+    - named.conf.options
+  notify:
+    - restart bind
+
+- name: Ensure bind is running and at boot
+  service:
+    name: bind9
+    enabled: yes
+    state: started
+  become: true

@@ -1,0 +1,23 @@
+acl "trusted" {
+	192.168.1.0/24;
+        localhost;
+};
+
+options {
+        directory "/var/cache/bind";
+
+        recursion yes;
+        allow-recursion { trusted; };
+        listen-on { 192.168.1.101; };
+        allow-transfer { none; };
+
+        forwarders {
+                8.8.8.8;
+                8.8.4.4;
+        };
+
+        dnssec-validation auto;
+
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6 { any; };
+};
