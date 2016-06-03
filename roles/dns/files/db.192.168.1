@@ -1,0 +1,17 @@
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	watchtower.home.lan. admin.home.lan. (
+			      4		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+; name servers
+	IN	NS	watchtower.home.lan.
+
+; PTR Records
+101	IN	PTR	watchtower.home.lan.	; 192.168.1.101
+102	IN	PTR	atom.home.lan.	; 192.168.1.102
+103	IN	PTR	flash.home.lan.	; 192.168.1.103
