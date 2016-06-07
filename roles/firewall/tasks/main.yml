@@ -1,0 +1,26 @@
+---
+- name: Install ufw
+  apt:
+    name: "{{item}}"
+    state: present
+  become: true
+  with_items:
+    - ufw
+
+- name: Install ufw configuration
+  copy:
+    src: "{{item}}"
+    dest: /etc/ufw/
+  become: true
+  with_items:
+    - user.rules
+    - user6.rules
+  notify:
+    - restart ufw
+
+- name: Ensure ufw is running now and at boot
+  service:
+    name: ufw
+    enabled: yes
+    state: started
+  become: true
