@@ -1,0 +1,20 @@
+---
+- name: Install mdadm configuration
+  copy:
+    src: mdadm.conf
+    dest: /etc/mdadm/mdadm.conf
+  become: true
+  register: mdadm
+
+- name: Mount RAID device
+  mount:
+    name: /mnt/data
+    src: /dev/md0
+    fstype: ext4
+    state: mounted
+  become: true
+
+- name: Update initramfs
+  shell: update-initramfs -u -k all
+  become: true
+  when: mdadm.changed
