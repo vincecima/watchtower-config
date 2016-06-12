@@ -23,4 +23,5 @@
   * http://andrwe.org/linux/own-ddns
   * http://dyn.com/dns
   * https://entrydns.net
+  * https://github.com/troglobit/inadyn
 - [ ] Verify that Emby packages aren't signed and report bug if so
