@@ -1,0 +1,26 @@
+---
+- name: Add Emby repository
+  apt_repository:
+    repo: 'deb http://download.opensuse.org/repositories/home:/emby/xUbuntu_15.10/ /'
+    state: present
+  become: true
+
+- name: Add Emby signing key
+  apt_key:
+    url: http://download.opensuse.org/repositories/home:emby/xUbuntu_15.10/Release.key
+    state: present
+  become: true
+
+- name: Install Emby
+  apt:
+    name: emby-server
+    state: present
+    allow_unauthenticated: true
+  become: true
+
+- name: Ensure Emby is running now and at boot
+  service:
+    name: emby-server
+    enabled: yes
+    state: started
+  become: true
