@@ -8,7 +8,7 @@
 
 - name: Mount RAID device
   mount:
-    name: /mnt/data
+    name: /mnt/array
     src: /dev/md0
     fstype: ext4
     state: mounted
