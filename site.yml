@@ -1,9 +1,0 @@
----
-- hosts: all
-  roles:
-    - base
-    - firewall
-    - dns
-    - raid
-    - share
-    - media_server
